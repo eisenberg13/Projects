@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recipes", "Recipes\Recipes.csproj", "{FC3B7355-EA67-471B-8D6E-36DF02C1E359}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RecipeProjectDB", "RecipeDB\RecipeProjectDB.sqlproj", "{4E73574B-8CCE-4CCE-9C71-1611B571DDCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC3B7355-EA67-471B-8D6E-36DF02C1E359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC3B7355-EA67-471B-8D6E-36DF02C1E359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC3B7355-EA67-471B-8D6E-36DF02C1E359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC3B7355-EA67-471B-8D6E-36DF02C1E359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E73574B-8CCE-4CCE-9C71-1611B571DDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E73574B-8CCE-4CCE-9C71-1611B571DDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E73574B-8CCE-4CCE-9C71-1611B571DDCF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4E73574B-8CCE-4CCE-9C71-1611B571DDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E73574B-8CCE-4CCE-9C71-1611B571DDCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E73574B-8CCE-4CCE-9C71-1611B571DDCF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBD92486-188B-4C8A-A97D-A6E14A94BFF5}
+	EndGlobalSection
+EndGlobal

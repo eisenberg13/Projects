@@ -1,0 +1,30 @@
+﻿@model List<Recipe>;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Recipes</h2>
+
+<div class="all-recipes">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Recipe Name</th>
+                <th>Description</th>
+                <th>Cook Time</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Recipe recipe in Model)
+            {
+                <tr>
+                    <td><a asp-controller="Home" asp-action="Detail" asp-route-id="@recipe.Id">@recipe.Name</a></td>
+                    <td>@recipe.Description</td>
+                    <td>@recipe.CookTime min</td>
+                    <td>@recipe.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
