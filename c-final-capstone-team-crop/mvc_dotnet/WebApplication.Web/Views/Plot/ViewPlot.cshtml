@@ -1,0 +1,115 @@
+﻿@model ViewPlotVM
+@{
+    ViewData["Title"] = "ViewPlot";
+}
+
+<h2>Edit Plot</h2>
+<p><a id=login-register asp-controller="Account" asp-action="UserPlotInfo">Return To Your Dashboard</a></p>
+<div id="plot-info">
+    <div id="plot-detail">
+        <div id="view-plot-header">
+            <h3 id="view-plot-h3">@Model.Plot.PlotName</h3>
+            <h3 id="view-plot-dimensions">@Model.Plot.Length ft. by @Model.Plot.Width ft.</h3>
+        </div>
+        <div>
+            <select asp-for="@Model.Plot.PlotExposure" id="exposureList" onchange="changeRecommendedList();">
+                <option value="Full Shade">Full Shade</option>
+                <option value="Partial Sun">Partial Sun</option>
+                <option value="Full Sun">Full Sun</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div id="main-content">
+    <div id="planner">
+        <canvas id="drawarea" width="@(Model.Plot.Length * 50) px" height="@(Model.Plot.Width * 50) px" style="border:2px solid black"></canvas>
+        <button id="delete"> Delete Selected Plant </button>
+
+        <button onclick="saveCanvas(canvas, '@Model')"> Save This Plot </button>  
+    </div>
+    <div id="recommendations" class="show-recommendations">
+        @{ int i = 1;}
+        @foreach (Plant plant in Model.RecommendedPlants)
+        {
+            <div>
+                <a style="color: @plant.Color"
+                   href="javascript:setPlantInfo('@plant.PlantName', '@plant.PlantExposure', '@plant.Spread', '@plant.Description', '@plant.Image')">
+                    @(i). @plant.PlantName
+                </a>
+                <button id="addPlot" onclick="onAddPlot('@i', '@plant.Id', '@plant.Spread', '@plant.Color')">(Add)</button>
+            </div>
+            i++;
+        }
+    </div>
+    <div class="secondary-recommendations hide-recommendations" id="Full Shade">
+        @{i = 1;}
+        @foreach (Plant plant in Model.FullShadePlants)
+        {
+            <div>
+                <a style="color: @plant.Color"
+                   href="javascript:setPlantInfo('@plant.PlantName', '@plant.PlantExposure', '@plant.Spread', '@plant.Description', '@plant.Image')">
+                    @(i). @plant.PlantName
+                </a>
+                <button id="addPlot" onclick="onAddPlot('@i','@plant.Id', '@plant.Spread', '@plant.Color')">(Add)</button>
+            </div>
+            i++;
+        }
+    </div>
+    <div class="secondary-recommendations hide-recommendations" id="Full Sun">
+        @{i = 1;}
+        @foreach (Plant plant in Model.FullSunPlants)
+        {
+            <div>
+                <a style="color: @plant.Color"
+                   href="javascript:setPlantInfo('@plant.PlantName', '@plant.PlantExposure', '@plant.Spread', '@plant.Description', '@plant.Image')">
+                    @(i). @plant.PlantName
+                </a>
+                <button id="addPlot" onclick="onAddPlot('@i', '@plant.Id', '@plant.Spread', '@plant.Color')">(Add)</button>
+            </div>
+            i++;
+        }
+    </div>
+    <div class="secondary-recommendations hide-recommendations" id="Partial Sun">
+        @{i = 1;}
+        @foreach (Plant plant in Model.PartialSunPlants)
+        {
+            <div>
+                <a style="color: @plant.Color"
+                   href="javascript:setPlantInfo('@plant.PlantName', '@plant.PlantExposure', '@plant.Spread', '@plant.Description', '@plant.Image')">
+                    @(i). @plant.PlantName
+                </a>
+                <button id="addPlot" onclick="onAddPlot('@i','@plant.Id', '@plant.Spread', '@plant.Color')">(Add)</button>
+            </div>
+            i++;
+        }
+    </div>
+</div>
+
+<div id="plant-info" class="plant-info-hide">
+    <div id="plant-image"></div>
+    <div id="plant-details">
+        <div id="plant-name"></div>
+        <div id="plant-exposure"></div>
+        <div id="plant-spread"></div>
+        <div id="plant-description"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.2.0/fabric.min.js"></script>
+
+<script type="text/javascript">
+    
+    let myTestData = @Html.Raw(Json.Serialize(@Model));
+
+
+
+    function setPlantInfo(name, exposure, spread, description, image) {
+        document.querySelector('div#plant-info').classList.remove("plant-info-hide");
+        document.querySelector('div#plant-info').classList.add("plant-info-show");
+        document.querySelector('div#plant-name').innerHTML = name;
+        document.querySelector('div#plant-exposure').innerHTML = exposure;
+        document.querySelector('div#plant-spread').innerHTML = "Spread: " + spread + " inches";
+        document.querySelector('div#plant-description').innerHTML = description;
+        document.querySelector('div#plant-image').innerHTML = '<img id="image"src="../../images/' + image + '"/>';
+    };
+</script>

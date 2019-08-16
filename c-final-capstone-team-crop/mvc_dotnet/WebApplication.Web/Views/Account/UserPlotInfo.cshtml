@@ -1,0 +1,59 @@
+﻿@model AccountInfoVM
+@{
+    ViewData["Title"] = "Welcome";
+}
+<p class="log-off-button"> <a id=login-register asp-controller="Account" asp-action="LogOff">Log off</a></p>
+
+
+<h2 id="logged-in-user-h2">Your Dashboard</h2>
+<div id="Logged-In-Saved-Plots">
+    @if (Model.UserPlots.Count != 0)
+    {
+        <table class="table table-striped">
+            @foreach (Plot plot in Model.UserPlots)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Plot" asp-action="ViewPlot" asp-route-id="@plot.Id">@plot.PlotName</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h4 id="NoPlotsCreated">Create your first plot below.</h4>
+    }
+</div>
+
+<div id="Logged-In-Create-Plot-Form">
+    <p>Create a new plot</p>
+    <form asp-controller="Plot" asp-action="CreatePlot" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label asp-for="@Model.plot.PlotName">Plot Name</label>
+                    <span class="error" asp-validation-for="@Model.plot.PlotName"></span>
+                    <input asp-for="@Model.plot.PlotName" />
+
+                    <label asp-for="@Model.plot.Length">Length (ft.)</label>
+                    <span class="error" asp-validation-for="@Model.plot.Length"></span>
+                    <input asp-for="@Model.plot.Length" />
+
+                    <label asp-for="@Model.plot.Width">Width (ft.)</label>
+                    <span class="error" asp-validation-for="@Model.plot.Width"></span>
+                    <input asp-for="@Model.plot.Width" />
+
+                    <label asp-for="@Model.plot.PlotExposure">Plot Exposure</label>
+                    <span class="error" asp-validation-for="@Model.plot.PlotExposure"></span>
+                    <select asp-for="@Model.plot.PlotExposure">
+                        <option value="Full Shade">Full Shade</option>
+                        <option value="Partial Sun">Partial Sun</option>
+                        <option value="Full Sun">Full Sun</option>
+                    </select>
+                    <input type="submit" value="Create Plot" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

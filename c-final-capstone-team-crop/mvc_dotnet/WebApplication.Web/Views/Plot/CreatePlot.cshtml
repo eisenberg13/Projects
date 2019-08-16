@@ -1,0 +1,40 @@
+﻿@model Plot
+@{
+    ViewData["Title"] = "CreatePlot";
+}
+
+<h2>Create Plot</h2>
+
+<div>
+    <div>
+
+         <p>Tell us a bit about your plot, and we'll save it for later use.</p>
+
+    </div>
+    <div>
+        <form asp-controller="Plot" asp-action="CreatePlot" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <label asp-for="PlotName">Plot Name</label>
+                        <span class="error" asp-validation-for="PlotName"></span>
+                        <input asp-for="PlotName" /><label asp-for="Length"></label>
+                        <span class="error" asp-validation-for="Length"></span>
+                        <input asp-for="Length" />
+                        <label asp-for="Width"></label>
+                        <span class="error" asp-validation-for="Width"></span>
+                        <input asp-for="Width" />
+                        <label asp-for="PlotExposure">Plot Exposure</label>
+                        <span class="error" asp-validation-for="PlotExposure"></span>
+                        <select asp-for="PlotExposure">
+                            <option value="Full Shade">Full Shade</option>
+                            <option value="Partial Sun">Partial Sun</option>
+                            <option value="Full Sun">Full Sun</option>
+                        </select>
+                        <input type="submit" value="Create Plot" class="btn btn-default" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
